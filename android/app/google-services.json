@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1045401644438",
+    "project_id": "otpappsinflutter",
+    "storage_bucket": "otpappsinflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045401644438:android:6201b995596938d33601b7",
+        "android_client_info": {
+          "package_name": "com.example.otpapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045401644438-3nmrmf14tvj5nftai00jfu22n4tf8l4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxLKAf4LGsxk49xulJyWFxTWkoLOBRcPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045401644438-3nmrmf14tvj5nftai00jfu22n4tf8l4a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
