@@ -38,6 +38,8 @@ dependencies:
   pinput: ^2.2.31
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
+  shared_preferences: ^2.1.2
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

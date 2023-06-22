@@ -127,11 +127,14 @@ class _OtpAppState extends State<OtpApp> {
                           borderRadius: BorderRadius.circular(20))),
                 ),
               ),
+
+              
               Row(
                 children: [
                   TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                           Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) =>  PhonePage()));
                       },
                       child: const Text(
                         'Edit Phone Number ?',

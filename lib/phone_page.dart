@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:otpapps/home_page.dart';
 import 'package:otpapps/opt_app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PhonePage extends StatefulWidget {
   PhonePage({super.key});
 
-   static String verify="";
-    
+  static String verify = "";
+
   @override
   State<PhonePage> createState() => _PhonePageState();
 }
@@ -14,8 +17,8 @@ class PhonePage extends StatefulWidget {
 class _PhonePageState extends State<PhonePage> {
   @override
   TextEditingController country = TextEditingController();
-  var phone =""; 
-  
+  var phone = "";
+
   @override
   void initState() {
     country.text = "+92";
@@ -87,13 +90,13 @@ class _PhonePageState extends State<PhonePage> {
                     const SizedBox(
                       width: 5,
                     ),
-                     Expanded(
+                    Expanded(
                       child: TextField(
                         keyboardType: TextInputType.phone,
-                        onChanged: (value){
-                          phone=value;
-                        }, 
-                        decoration:const InputDecoration(
+                        onChanged: (value) {
+                          phone = value;
+                        },
+                        decoration: const InputDecoration(
                             border: InputBorder.none, hintText: "phone"),
                       ),
                     ),
@@ -109,14 +112,23 @@ class _PhonePageState extends State<PhonePage> {
                 child: ElevatedButton(
                   onPressed: () async {
                     await FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: '${country.text+phone}',
+                      phoneNumber: '${country.text + phone}',
+                      timeout: const Duration(seconds: 60),
                       verificationCompleted:
                           (PhoneAuthCredential credential) {},
                       verificationFailed: (FirebaseAuthException e) {},
-                      codeSent: (String verificationId, int? resendToken) {
-                         PhonePage.verify=verificationId;
-                           Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const OtpApp()));
+                      codeSent:
+                          (String verificationId, int? resendToken) async {
+                        PhonePage.verify = verificationId;
+
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs
+                            .setString('number', country.text)
+                            .then((value) => Get.offAll(OtpApp()));
+
+                        //    Navigator.pushReplacement(context,
+                        // MaterialPageRoute(builder: (context) => const OtpApp()));
                       },
                       codeAutoRetrievalTimeout: (String verificationId) {},
                     );
